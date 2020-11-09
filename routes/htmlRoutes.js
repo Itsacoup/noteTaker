@@ -8,6 +8,11 @@ router.get("/notes", (req, res) => {
 })
 
 // HTML render route, gets index.html from public
+router.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+})
+
+// HTML render route, gets index.html from public
 router.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/index.html"));
 })
