@@ -1,30 +1,28 @@
+// Dependencies
 const router = require("express").Router()
 const store = require("./../db/store.js")
 
-
+// GET route which uses getNotes() from store.js
 router.get("/notes", (req, res) => {
-    // this is the GET route where your will you 
-    // will utilize the getNotes() function
+    
     store
         .getNotes()
         .then(notes => res.json(notes))
         .catch(err => res.status(500).json(err))
 });
 
-// router.post("/notes/:id", (req, res) => {
+// POST route which uses addNotes() from store.js
 router.post("/notes", (req, res) => {
-    // this is the POST route where your will you 
-    // will utilize the addNotes() function
+   
     store
         .addNote(req.body)
         .then((notes) => res.json(notes))
         .catch(err => res.status(500).json(err))
 })
 
-// router.delete("/notes/:id", (req, res) => {
+// DELETE route which uses removeNote() from store.js with ID passed in as a param 
 router.delete("/notes/:id", (req, res) => {
-    // this is the delete route where you will
-    // utilize the removeNote() function
+  
     store
         .deleteNotes(req.params.id)
         .then(() => res.json({ ok: true }))
